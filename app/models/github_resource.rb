@@ -19,9 +19,9 @@ class GithubResource
     response = Net::HTTP.get(uri, headers)
     parsed_response = JSON.parse(response)
 
-    # If the response includes `message` key, it means the response was not successful.
+    # If the response includes `message` key, it means the response was not
+    # successful and we need to return errors.
     return parsed_response if parsed_response["message"]
-    return parsed_response["items"].sort_by { |item| item["name"] } if @args["sort"] == "name"
 
     parsed_response["items"]
   end
