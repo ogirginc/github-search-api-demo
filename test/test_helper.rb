@@ -13,3 +13,10 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+require "vcr"
+
+VCR.configure do |config|
+  config.cassette_library_dir = "test/vcr_cassettes"
+  config.hook_into :webmock
+end
